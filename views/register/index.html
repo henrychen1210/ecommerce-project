@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.2/purify.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+
+  <title>Register</title>
+</head>
+<body>
+  <div id="registerContainer" class="logContainer">
+    <label>Register</label>
+    <form id="signup-form" class="login-form">
+      <input type="text" placeholder="username" id="username" />
+      <input type="text" placeholder="email" id="email" />
+      <input type="password" placeholder="password" id="password" />
+      <input type="password" placeholder="confirm password" id="confirm-password" />
+      <button type="submit">Register</button>
+    </form>
+    <br>
+    <br>
+    <div class="smallText">
+      <p>Username: 3-20 characters, letters and numbers only.</p>
+      <p>Password: 6-20 characters, must include uppercase, lowercase, digit, and special character.</p>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <a href="/">Home</a>
+  </div>
+</body>
+<script src="register.js"></script>
+</html>

@@ -1,0 +1,389 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Ubuntu:wght@500&display=swap");
+body {
+  margin: 0;
+  box-sizing: border-box;
+  color: #1c1b1e;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: auto;
+  gap: 30px;
+}
+
+#products-container {
+  padding: 10px 20px;
+  color: #1c1b1e;
+  font-family: "Playfair Display", serif;
+}
+#products-container div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 3/4;
+}
+#products-container a {
+  color: #1c1b1e;
+  text-decoration: none;
+  padding-inline: 10px;
+  font-size: 12px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-around;
+}
+#products-container a img {
+  width: 100%;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#nav-bar {
+  box-sizing: border-box;
+  background-color: #A49E8D;
+  width: 100%;
+  height: 50px;
+  padding-inline: 10px;
+}
+#nav-bar a, #nav-bar button {
+  font-family: "Ubuntu", sans-serif;
+  color: #f8fae4;
+  text-decoration: none;
+  padding-inline: 10px;
+  font-size: 15px;
+  transition: 0.3s;
+}
+#nav-bar a:hover, #nav-bar button:hover {
+  cursor: pointer;
+  color: #8f64a4;
+}
+#nav-bar button {
+  background-color: transparent;
+  border: none;
+  transition: 0.3s;
+}
+
+.show {
+  box-sizing: border-box;
+  width: 100%;
+  height: 2em;
+  transition: 0.5s;
+}
+.show label {
+  display: flex;
+  direction: row;
+  align-items: center;
+  color: #A49E8D;
+  font-size: 14px;
+  height: 20px;
+  padding-inline: 10px;
+}
+.show input[type=checkbox] {
+  display: none;
+}
+
+.checkbox-container {
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
+.checkbox-container button {
+  border: 1px solid #A49E8D;
+  background-color: #A49E8D;
+  color: #f8fae4;
+  transition: 0.3s;
+}
+.checkbox-container button:hover {
+  color: #A49E8D;
+  background-color: #f8fae4;
+  cursor: pointer;
+}
+
+.none {
+  height: 0px;
+  transition: 0.5s;
+}
+
+.bold {
+  font-weight: 900;
+}
+
+.custom-checkbox {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+input[type=checkbox]:checked + .custom-checkbox {
+  background-color: #A49E8D;
+}
+
+#pageBtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  margin: 50px;
+}
+#pageBtn button {
+  width: 80px;
+  height: 30px;
+  border: 2px solid #A49E8D;
+  background-color: #A49E8D;
+  color: #f8fae4;
+  margin: 0 10px;
+  transition: 0.5s;
+  font-size: 16px;
+}
+#pageBtn button:disabled {
+  background-color: #ccc;
+  border: 2px solid #ccc;
+}
+#pageBtn button:not(:disabled):hover {
+  background-color: #f8fae4;
+  color: #A49E8D;
+  cursor: pointer;
+}
+
+#favList {
+  position: fixed;
+  right: 0;
+  transition: 0.5s;
+  height: 90vh;
+  overflow: scroll;
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+#favList a {
+  width: 100px;
+  display: flex;
+  flex-direction: col;
+}
+#favList a img {
+  width: 100%;
+}
+
+.show-fav-list {
+  opacity: 1;
+}
+
+.favItemBtn {
+  position: relative;
+  top: 10%;
+  left: -40%;
+  background-color: transparent;
+  border: none;
+  font-size: 30px;
+  color: #8f64a4;
+  transition: 0.5s;
+  z-index: 2;
+}
+.favItemBtn:hover {
+  scale: 1.2;
+  cursor: pointer;
+}
+
+.noItemLabel {
+  margin: 50px;
+  grid-column: 1/span 3;
+  text-align: center;
+  font-size: 40px;
+  color: #1c1b1e;
+}
+
+#productDes {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  width: 500px;
+}
+#productDes label {
+  font-size: 16px;
+  font-family: "Playfair Display", serif;
+}
+#productDes p {
+  margin: 0;
+  font-size: 14px;
+  color: #8d8d8d;
+}
+
+#productContainer {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: end;
+  width: 100%;
+  height: calc(100vh - 150px);
+}
+#productContainer img {
+  aspect-ratio: 3/4;
+  width: 30%;
+}
+#productContainer button {
+  position: relative;
+  left: -60px;
+  bottom: 15px;
+}
+
+#notFoundContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 400px;
+}
+#notFoundContainer label {
+  font-size: 60px;
+  font-weight: bold;
+  font-family: "Playfair Display", serif;
+}
+#notFoundContainer a {
+  text-decoration: none;
+  color: #ccc;
+}
+
+#userTable {
+  width: 500px;
+  margin: 4% 0 0 50px;
+}
+#userTable caption {
+  text-align: left;
+  color: #8f64a4;
+  font-size: 100px;
+  font-weight: bold;
+  font-family: "Playfair Display", serif;
+}
+#userTable th {
+  text-align: left;
+}
+#userTable button {
+  border: 1px solid #8f64a4;
+  background-color: #8f64a4;
+  transition: 0.3s;
+  font-size: 16px;
+  color: #f8fae4;
+  width: 100px;
+  height: 30px;
+}
+#userTable button:hover {
+  color: #8f64a4;
+  background-color: #f8fae4;
+  cursor: pointer;
+}
+
+#prodcutContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0 50px 0 0;
+  width: 30%;
+}
+#prodcutContainer img {
+  width: 100%;
+}
+
+#adminContainer {
+  height: 80vh;
+  align-items: start;
+}
+
+.logContainer {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #A49E8D;
+}
+.logContainer label {
+  color: #f8fae4;
+  font-size: 200px;
+  font-weight: bold;
+  font-family: "Playfair Display", serif;
+  margin: 50px;
+}
+.logContainer a {
+  color: #8f64a4;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.logContainer a:hover {
+  scale: 1.2;
+}
+
+.login-form input {
+  border: none;
+  height: 30px;
+  width: 200px;
+  box-sizing: border-box;
+  padding: 5px;
+  outline-color: #8f64a4;
+}
+.login-form button {
+  height: 30px;
+  width: 80px;
+  border: none;
+  background-color: #f8fae4;
+  transition: 0.3s;
+  color: #A49E8D;
+}
+.login-form button:hover {
+  background-color: #8f64a4;
+  cursor: pointer;
+  color: #f8fae4;
+}
+
+#registerContainer {
+  background-color: #dad9c2;
+}
+#registerContainer label {
+  color: #A49E8D;
+}
+
+#signup-form button {
+  background-color: #A49E8D;
+  color: #dad9c2;
+}
+#signup-form button:hover {
+  background-color: #8f64a4;
+}
+
+.smallText {
+  font-size: 14px;
+  color: #A49E8D;
+  text-align: left;
+}
+
+#productFavBtn {
+  width: 50px;
+}
+#productFavBtn i {
+  color: #8f64a4;
+}
+
+#pageLabel {
+  color: #ccc;
+  padding-inline: 30px;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 15px;
+}/*# sourceMappingURL=style.css.map */

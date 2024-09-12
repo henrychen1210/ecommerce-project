@@ -1,0 +1,348 @@
+$khaki: #A49E8D
+$white: #f8fae4
+$black: #1c1b1e
+$grey: #1a1a1abd
+$grey-1: #ccc
+$grey-2: #fff
+$gray-3: #8d8d8d
+$red: #8f64a4
+$white-2: #dad9c2
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Ubuntu:wght@500&display=swap')
+
+body
+  margin: 0
+  box-sizing: border-box
+  color: $black
+
+.grid
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  width: auto
+  gap: 30px
+
+#products-container
+  padding: 10px 20px
+  color: $black
+  font-family: 'Playfair Display', serif
+  div
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    width: 100%
+    aspect-ratio: 3 /4
+
+  a
+    color: $black
+    text-decoration: none
+    padding-inline: 10px
+    font-size: 12px
+    height: 100%
+    width: 100%
+    display: flex
+    flex-direction: column
+    align-items: start
+    justify-content: space-around
+    img
+      width: 100%
+
+@mixin flex-row()
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  align-items: center
+
+.flex-row
+  @include flex-row()
+
+#nav-bar
+  box-sizing: border-box
+  background-color: $khaki
+  width: 100%
+  height: 50px
+  padding-inline: 10px
+  a, button
+    font-family: "Ubuntu", sans-serif
+    color: $white
+    text-decoration: none
+    padding-inline: 10px
+    font-size: 15px
+    transition: 0.3s
+    &:hover
+      cursor: pointer
+      color: $red
+  button
+    background-color: transparent
+    border: none
+    transition: 0.3s
+
+.show
+  box-sizing: border-box
+  width: 100%
+  height: 2em
+  transition: 0.5s
+  label
+    display: flex
+    direction: row
+    align-items: center
+    color: $khaki
+    font-size: 14px
+    height: 20px
+    padding-inline: 10px
+
+  input[type="checkbox"]
+    display: none
+
+.checkbox-container
+  display: flex
+  justify-content: end
+  align-items: end
+  button
+    border: 1px solid $khaki
+    background-color: $khaki
+    color: $white
+    transition: 0.3s
+    &:hover
+      color: $khaki
+      background-color: $white
+      cursor: pointer
+
+.none
+  height: 0px
+  transition: 0.5s
+
+.bold
+  font-weight: 900
+
+.custom-checkbox
+  display: inline-block
+  width: 12px
+  height: 12px
+  border: 1px solid $grey-1
+  border-radius: 20px
+  background-color: $grey-2
+  cursor: pointer
+  transition: 0.3s
+
+input[type="checkbox"]:checked + .custom-checkbox
+  background-color: $khaki
+
+#pageBtn
+  @include flex-row()
+  justify-content: center
+  margin: 50px
+  button
+    width: 80px
+    height: 30px
+    border: 2px solid $khaki
+    background-color: $khaki
+    color: $white
+    margin: 0 10px
+    transition: 0.5s
+    font-size: 16px
+
+    &:disabled
+      background-color: $grey-1
+      border: 2px solid $grey-1
+
+    &:not(:disabled):hover
+      background-color: $white
+      color: $khaki
+      cursor: pointer
+
+#favList
+  position: fixed
+  right: 0
+  transition: 0.5s
+  height: 90vh
+  overflow: scroll
+  overflow-x: hidden
+  transition: 0.5s
+  a
+    width: 100px
+    display: flex
+    flex-direction: col
+
+    img
+      width: 100%
+
+.show-fav-list
+  opacity: 1
+
+.favItemBtn
+  position: relative
+  top: 10%
+  left: -40%
+  background-color: transparent
+  border: none
+  font-size: 30px
+  color: $red
+  transition: 0.5s
+  z-index: 2
+  &:hover
+    scale: 1.2
+    cursor: pointer
+
+.noItemLabel
+  margin: 50px
+  grid-column: 1 / span 3
+  text-align: center
+  font-size: 40px
+  color: $black
+
+#productDes
+  display: flex
+  flex-direction: column
+  justify-content: start
+  align-items: start
+  width: 500px
+
+  label
+    font-size: 16px
+    font-family: 'Playfair Display', serif
+
+  p
+    margin: 0
+    font-size: 14px
+    color: $gray-3
+
+#productContainer
+  box-sizing: border-box
+  display: flex
+  flex-direction: row
+  justify-content: center
+  align-items: end
+  width: 100%
+  height: calc(100vh - 150px)
+  img
+    aspect-ratio: 3 /4
+    width: 30%
+  button
+    position: relative
+    left: -60px
+    bottom: 15px
+
+#notFoundContainer
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  width: 100%
+  height: 400px
+  label
+    font-size: 60px
+    font-weight: bold
+    font-family: 'Playfair Display', serif
+  a
+    text-decoration: none
+    color: $grey-1
+
+#userTable
+  width: 500px
+  margin: 4% 0 0 50px
+  caption
+    text-align: left
+    color: $red
+    font-size: 100px
+    font-weight: bold
+    font-family: 'Playfair Display', serif
+  th
+    text-align: left
+  button
+    border: 1px solid $red
+    background-color: $red
+    transition: 0.3s
+    font-size: 16px
+    color: $white
+    width: 100px
+    height: 30px
+
+    &:hover
+      color: $red
+      background-color: $white
+      cursor: pointer
+
+#prodcutContainer
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  margin: 0 50px 0 0
+  width: 30%
+  img
+    width: 100%
+
+#adminContainer
+  height: 80vh
+  align-items: start
+
+.logContainer
+  width: 100%
+  height: 100vh
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  background-color: $khaki
+  label
+    color: $white
+    font-size: 200px
+    font-weight: bold
+    font-family: 'Playfair Display', serif
+    margin: 50px
+  a
+    color: $red
+    text-decoration: none
+    transition: 0.3s
+    &:hover
+      scale: 1.2
+
+.login-form
+  input
+    border: none
+    height: 30px
+    width: 200px
+    box-sizing: border-box
+    padding: 5px
+    outline-color: $red
+    &:hover
+
+  button
+    height: 30px
+    width: 80px
+    border: none
+    background-color: $white
+    transition: 0.3s
+    color: $khaki
+    &:hover
+      background-color: $red
+      cursor: pointer
+      color: $white
+
+#registerContainer
+  background-color: $white-2
+  label
+    color: $khaki
+
+#signup-form
+  button
+    background-color: $khaki
+    color: $white-2
+    &:hover
+      background-color: $red
+
+.smallText
+  font-size: 14px
+  color: $khaki
+  text-align: left
+
+#productFavBtn
+  width: 50px
+  i
+    color: $red
+
+#pageLabel
+  color: $grey-1
+  padding-inline: 30px
+  font-family: "Ubuntu", sans-serif
+  font-size: 15px
