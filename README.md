@@ -2,6 +2,8 @@
 
 A full-stack ecommerce web application built with Node.js, Express, and MongoDB. Users can browse products, filter by brand and category, save favorites, and manage their account. An admin dashboard provides user management.
 
+![Project Screenshot](screenshot.png)
+
 ## Features
 
 - Browse and filter products by brand and category
