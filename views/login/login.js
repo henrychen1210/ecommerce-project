@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = '';
 
 // check if user is logged in
 const token = window.localStorage.getItem('token');

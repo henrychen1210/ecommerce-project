@@ -51,15 +51,21 @@ const generateToken = (id, username, role) => {
 const verifyToken = (req, res, next) => {
   // get token from header
   const authHeader = req.headers.authorization;
-  
+
   if (!authHeader || validator.isEmpty(authHeader)) {
     return res.status(401).redirect('/views/');
   }
-  
+
   const token = authHeader.split(' ')[1];
 
   // decode token
-  const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+  let decoded;
+  try {
+    decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+  } catch (err) {
+    return next(err);
+  }
+
   if (!decoded.id || !validator.isMongoId(decoded.id)) {
     return res.status(401).json({
       message: 'Invalid token',

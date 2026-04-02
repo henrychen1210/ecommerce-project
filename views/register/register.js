@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = '';
 
 // check if user is logged in
 const token = window.localStorage.getItem('token');
@@ -16,7 +16,7 @@ const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('password');
 const confirmPasswordInput = document.getElementById('confirm-password');
 
-const handleSubmit = (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
   const username = DOMPurify.sanitize(usernameInput.value.trim());
   const email = DOMPurify.sanitize(emailInput.value.trim());
@@ -47,37 +47,35 @@ const handleSubmit = (e) => {
     return;
   }
 
-  fetch(`${BASE_URL}/register`, {
-    method: 'POST',
-    headers: {
-      // must specify content-type if you used express.urlencoded() middleware
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      username,
-      password,
-      email,
-      role: "user"
-    }),
-  })
-    .then((res) => {
-      if (!res.ok) {
-        return res.json().then(({ message }) => {
-          console.error(message);
-          alert('Error Logging In: ' + message);
-        });
-      }
-      return res.json();
-    })
-    .then(({ token }) => {
-      // after signup, set the token and username to the localStorage, you don't have to set the username in localStorage, it is just for display purposes
-      window.localStorage.setItem('token', token);
-      window.localStorage.setItem('role', 'user');
-    })
-    .then(() => (window.location.href = '/')) // after setting everything in localStorage, redirect to home page
-    .catch((err) => {
-      console.log(err.message);
+  try {
+    const res = await fetch(`${BASE_URL}/register`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username,
+        password,
+        email,
+        role: "user"
+      }),
     });
+
+    if (!res.ok) {
+      const { message } = await res.json();
+      console.error(message);
+      alert('Error Registering: ' + message);
+      return;
+    }
+
+    const { token } = await res.json();
+    window.localStorage.setItem('token', token);
+    window.localStorage.setItem('role', 'user');
+    window.location.href = '/';
+  } catch (err) {
+    console.error('Error Registering:', err.message);
+    alert('Error Registering: ' + err.message);
+  }
 };
 
 form.addEventListener('submit', handleSubmit);

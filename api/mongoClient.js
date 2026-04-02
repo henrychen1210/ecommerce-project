@@ -120,7 +120,7 @@ const unfavoriteProduct = async (userId, productId) => {
     console.log(data);
     return data;
   } catch (error) {
-    console.error('Error unfollowing product:', error.message);
+    console.error('Error unfavoriting product:', error.message);
     throw error;
   }
 };

@@ -16,10 +16,6 @@ app.use(
 );
 
 
-app.listen(4000, () => {
-  console.log("Server is up on port 3000");
-});
-
 // A middleware to parse cookies attached to the client's request.
 app.use(cookieParser());
 
