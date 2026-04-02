@@ -27,15 +27,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan(':method :url :status :response-time ms'));
 
 // This serves static files like images, CSS files, and JavaScript files from the views directory.
-app.use(express.static('views'));
+app.use(express.static(path.join(__dirname, 'views')));
 
 // Define routes for our application:
 app.use('', UserRouter);
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
 // This route catches any requests that do not match the routes defined above and returns a 404 error, indicating that the requested resource was not found.
 app.all('*', (_req, res) => {
-  return res.sendFile(path.join(__dirname, './views/404/'));
+  return res.sendFile(path.join(__dirname, 'views', '404', 'index.html'));
 });
 
 mongoApi.connectToDatabase();
