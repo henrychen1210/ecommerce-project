@@ -10,7 +10,6 @@ const path = require('path');
 
 require('dotenv').config();
 const { MONGO_URL } = process.env;
-console.log(MONGO_URL)
 
 async function connectToDatabase() {
   try {
@@ -44,11 +43,9 @@ const register = async (req, res) => {
       email,
       role
     });
-    console.log(user);
 
     // generate JWT token
     const token = generateToken(user._id, username, user.role);
-    console.log(token);
 
     // send token in cookie
     res.cookie('token', token, { httpOnly: true, maxAge: 3600000 });
@@ -74,7 +71,6 @@ const login = async (req, res) => {
     if (!user) {
       return res.status(401).json({ message: 'Incorrect username' });
     }
-    console.log(user);
 
     // check if password is correct
     const isPasswordCorrect = await argon2.verify(user.password, password);
@@ -84,7 +80,6 @@ const login = async (req, res) => {
 
     // generate JWT token
     const token = generateToken(user._id, username, user.role);
-    console.log(token);
 
     // send token in cookie
     res.cookie('token', token, { httpOnly: true, maxAge: 3600000 });
@@ -256,7 +251,7 @@ const favProduct = async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    res.status(200).json({ message: 'Favorite porduct' });
+    res.status(200).json({ message: 'Favorite product' });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: error.message });
@@ -281,7 +276,7 @@ const unfavProduct = async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     }
     
-    res.status(200).json({ message: 'Unfavorite porduct' });
+    res.status(200).json({ message: 'Unfavorite product' });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: error.message });
@@ -317,7 +312,7 @@ const getUserList = async (req, res) => {
     }
 
     // Fetch all user accounts and their favorites list from the database
-    const users = await User.find();
+    const users = await User.find().select('-password');
 
     // Return the user data to the client
     res.status(200).json(users);
