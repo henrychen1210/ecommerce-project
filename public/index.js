@@ -175,6 +175,12 @@ function setCheckboxes() {
   });
 }
 
+const imgWithSpinner = (src, alt) => `
+  <div class="img-wrapper">
+    <div class="img-spinner"></div>
+    <img src="${src}" alt="${alt}" class="loading" onload="this.classList.remove('loading');this.previousElementSibling.remove()">
+  </div>`;
+
 const showProducts = (products, favorites) => {
 
   const productsContainer = document.getElementById('products-container');
@@ -202,7 +208,7 @@ const showProducts = (products, favorites) => {
           <i class="${heartIconClass} fa-heart"></i>
         </button>
         <a href="${BASE_URL}/products/details/${product._id}">
-          <img src="${product.image}" alt="${product.name}">
+          ${imgWithSpinner(product.image, product.name)}
           <label>${product.name}</label>
           <label>$${product.price}</label>
         </a>
@@ -210,7 +216,7 @@ const showProducts = (products, favorites) => {
     } else {
       card.innerHTML = `
         <a href="${BASE_URL}/products/details/${product._id}">
-          <img src="${product.image}" alt="${product.name}">
+          ${imgWithSpinner(product.image, product.name)}
           <label>${product.name}</label>
           <label>$${product.price}</label>
         </a>
@@ -414,7 +420,7 @@ const showFavList = (favorites, show) => {
       card.classList.add('product-card');
       card.innerHTML = `
         <a href="${BASE_URL}/products/details/${productInfo._id}">
-          <img src="${productInfo.image}" alt="${productInfo.name}">
+          ${imgWithSpinner(productInfo.image, productInfo.name)}
         </a>
       `;
       div.appendChild(card);

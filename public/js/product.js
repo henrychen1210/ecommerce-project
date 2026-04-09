@@ -49,8 +49,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     const img = document.getElementById('productImage');
-    img.src = product.image;
     img.alt = product.name;
+    img.classList.add('loading');
+    const spinner = document.createElement('div');
+    spinner.className = 'img-spinner';
+    img.parentElement.classList.add('img-wrapper');
+    img.parentElement.insertBefore(spinner, img);
+    img.onload = () => { img.classList.remove('loading'); spinner.remove(); };
+    img.src = product.image;
 
     if (isLoggedIn) {
       const favorites = await getFavList();

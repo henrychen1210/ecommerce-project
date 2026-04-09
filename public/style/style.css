@@ -1,4 +1,37 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
+
+.img-wrapper {
+  position: relative;
+  width: 100%;
+}
+.img-wrapper img {
+  display: block;
+  width: 100%;
+}
+.img-wrapper img.loading {
+  opacity: 0;
+}
+.img-spinner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0ede8;
+}
+.img-spinner::after {
+  content: '';
+  width: 24px;
+  height: 24px;
+  border: 3px solid #A49E8D;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 body {
   margin: 0;
   box-sizing: border-box;
