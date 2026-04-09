@@ -1,8 +1,8 @@
-# Ecommerce Project
+# e-com
 
 A fashion ecommerce portfolio site with product browsing, user auth, and favourites.
 
-**Live:** https://ecommerce-project-two-dusky.vercel.app
+**Live:** https://ecommerce-project-woad-ten.vercel.app/
 
 ---
 
