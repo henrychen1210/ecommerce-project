@@ -1,7 +1,4 @@
 {
-  "functions": {
-    "api/**/*.js": {}
-  },
   "rewrites": [
     { "source": "/products/details/:id", "destination": "/products/details/index.html" }
   ]
