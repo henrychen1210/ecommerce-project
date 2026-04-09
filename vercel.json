@@ -1,11 +1,5 @@
 {
-  "version": 2,
-  "functions": {
-    "app.js": {
-      "includeFiles": "views/**"
-    }
-  },
   "rewrites": [
-    { "source": "/(.*)", "destination": "/app.js" }
+    { "source": "/products/details/:id", "destination": "/products/details/index.html" }
   ]
 }

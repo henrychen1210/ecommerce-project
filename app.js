@@ -4,41 +4,32 @@ const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const path = require('path');
 
-const UserRouter =  require('./routes/users.js');
-const mongoApi = require('./api/mongoServer.js');
+const UserRouter = require('./routes/users.js');
 
 const app = express();
-app.use(
-  // enable cookies for cors
-  cors({ 
-    credentials: true,
-  }),
-);
-
-
-// A middleware to parse cookies attached to the client's request.
+app.use(cors({ credentials: true }));
 app.use(cookieParser());
-
-// These are built into Express and are used for parsing the body of incoming requests. They support JSON and URL-encoded data.
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// A logging middleware that helps in debugging by logging requests details.
 app.use(morgan(':method :url :status :response-time ms'));
 
-// This serves static files like images, CSS files, and JavaScript files from the views directory.
-app.use(express.static(path.join(__dirname, 'views')));
+// Static assets
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/image', express.static(path.join(__dirname, 'public', 'image')));
 
-// Define routes for our application:
-app.use('', UserRouter);
+// API routes (mirrors Vercel's /api/* functions for local dev)
+app.use('/api', UserRouter);
+
+// Serve product details static page for any /products/details/:id path
+app.get('/products/details/:id', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'products', 'details', 'index.html'));
+});
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// This route catches any requests that do not match the routes defined above and returns a 404 error, indicating that the requested resource was not found.
 app.all('*', (_req, res) => {
-  return res.sendFile(path.join(__dirname, 'views', '404', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', '404', 'index.html'));
 });
-
-mongoApi.connectToDatabase();
 
 module.exports = app;

@@ -1,7 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const mongoApi = require('../api/mongoServer.js');
-const middle = require('../api/middleware.js');
+const mongoApi = require('../lib/mongoServer.js');
+const middle = require('../lib/middleware.js');
+
+router.use(async (req, res, next) => {
+  try {
+    await mongoApi.connectToDatabase();
+    next();
+  } catch (err) {
+    console.error('Database connection failed:', err.message);
+    return res.status(503).json({ message: 'Database unavailable' });
+  }
+});
 
 /* GET users listing. */
 router

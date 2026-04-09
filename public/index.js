@@ -244,14 +244,13 @@ const showProducts = (products, favorites) => {
 
 
 const viewProductDetails = (productId) => {
-  // Redirect to the product details page with the productId
-  window.location.href = `/products/${productId}`;
+  window.location.href = `${BASE_URL}/products/details/${productId}`;
 };
 
 // Function to fetch products
 const fetchProducts = async (page, brands, types) => {
   try {
-    let url = BASE_URL + `/products?page=${page}`;
+    let url = `/api/products?page=${page}`;
 
     if (brands) {
       brands.forEach((brand) => {
@@ -282,7 +281,7 @@ const fetchProducts = async (page, brands, types) => {
 // Function to fetch product details
 const fetchProductImage = async (productId) => {
   try {
-    const response = await fetch( BASE_URL + `/products/image?productId=${productId}`, {
+    const response = await fetch( `/api/products/image?productId=${productId}`, {
       method: 'GET',
     });
     const data = await response.json();
@@ -311,6 +310,7 @@ nextBtn.addEventListener('click', async()=> {
 
 // Function to handle previous button click
 previousBtn.addEventListener('click', async()=> {
+  if (currentPage <= 1) return;
   currentPage--;
   const data = await await fetchProducts(currentPage, selectedBrands, selectedCats);
   totalPages = data.totalPages;
@@ -351,7 +351,7 @@ function rollTop() {
 // Function to log out a user
 const logoutUser = async () => {
   try {
-    const response = await fetch(BASE_URL + '/logout', {
+    const response = await fetch('/api/logout', {
       method: 'GET',
       credentials: 'include', // Include cookies in the request
       headers: {
@@ -375,7 +375,7 @@ const logoutUser = async () => {
 
 const getFavList = async () => {
   try {
-    const response = await fetch(BASE_URL + '/favlist', {
+    const response = await fetch('/api/favlist', {
       method: 'GET',
       credentials: 'include', // Include cookies in the request
       headers: {
@@ -425,7 +425,7 @@ const showFavList = (favorites, show) => {
 // Function to favorite a product
 const favoriteProduct = async (productId) => {
   try {
-    const response = await fetch( BASE_URL + '/favorite', {
+    const response = await fetch( '/api/favorite', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -447,7 +447,7 @@ const favoriteProduct = async (productId) => {
 // Function to unfavorite a product
 const unfavoriteProduct = async (productId) => {
   try {
-    const response = await fetch( BASE_URL + '/unfavorite', {
+    const response = await fetch( '/api/unfavorite', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

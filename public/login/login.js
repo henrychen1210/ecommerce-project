@@ -6,7 +6,7 @@ const isLoggedIn = token !== null;
 
 if (isLoggedIn) {
   // if already logged in, redirect to home page
-  window.location.href = '/views';
+  window.location.href = '/';
 }
 
 // select needed elements
@@ -27,7 +27,7 @@ const handleSubmit = async (e) => {
 
   try {
     // Send login request to server
-    const response = await fetch(`${BASE_URL}/login`, {
+    const response = await fetch(`/api/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

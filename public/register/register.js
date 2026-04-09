@@ -6,7 +6,7 @@ const isLoggedIn = token !== null;
 
 if (isLoggedIn) {
   // if already logged in, redirect to home page
-  window.location.href = '/views';
+  window.location.href = '/';
 }
 
 // select needed elements
@@ -48,7 +48,7 @@ const handleSubmit = async (e) => {
   }
 
   try {
-    const res = await fetch(`${BASE_URL}/register`, {
+    const res = await fetch(`/api/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

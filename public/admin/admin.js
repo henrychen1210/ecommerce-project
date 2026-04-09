@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 const getUserList = async () => {
   try {
-    const response = await fetch(BASE_URL + '/admin/user', {
+    const response = await fetch('/api/admin/user', {
       method: 'GET',
       credentials: 'include',
       headers: {
@@ -46,7 +46,7 @@ const getUserList = async () => {
 // Function to log out a user
 const logoutUser = async () => {
   try {
-    const response = await fetch(BASE_URL + '/logout', {
+    const response = await fetch('/api/logout', {
       method: 'GET',
       credentials: 'include', // Include cookies in the request
       headers: {
@@ -120,7 +120,7 @@ async function showFavProduct(favorites) {
 
 const fetchProductImage = async (productId) => {
   try {
-    const response = await fetch(`${BASE_URL}/products/image?productId=${productId}`);
+    const response = await fetch(`/api/products/image?productId=${productId}`);
     const data = await response.json();
     return data;
   } catch (error) {
